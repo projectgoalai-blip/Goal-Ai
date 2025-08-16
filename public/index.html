@@ -3,23 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goal AI - JEE/NEET Preparation Assistant (v2.0)</title>
-    <!-- Cache buster -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <meta name="description" content="AI-powered goal tracking for JEE/NEET preparation">
-    <meta name="theme-color" content="#000000">
-    
-    <!-- PWA Configuration -->
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIxNiIgeT0iMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSI4IiBmaWxsPSJ3aGl0ZSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+R0E8L3RleHQ+Cjwvc3ZnPgo=">
-    
-    <!-- Mobile optimizations -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Goal AI">
-    
+    <title>Goal AI - JEE/NEET Preparation Assistant</title>
     <style>
         * {
             margin: 0;
@@ -29,168 +13,290 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
         }
         
-        #root {
-            min-height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
+        }
+        
+        .header {
             text-align: center;
+            padding: 40px 0;
         }
         
-        .app-container {
-            max-width: 500px;
-            width: 100%;
-        }
-        
-        h1 {
+        .header h1 {
             font-size: 3em;
-            margin-bottom: 20px;
-            color: white;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
-        .subtitle {
+        .header p {
             font-size: 1.2em;
-            color: #888;
-            margin-bottom: 40px;
+            opacity: 0.8;
         }
         
-        .button-group {
+        .auth-section {
             display: flex;
-            gap: 20px;
             justify-content: center;
-            margin-bottom: 30px;
+            gap: 40px;
+            margin: 40px 0;
             flex-wrap: wrap;
         }
         
-        .btn {
-            padding: 12px 24px;
-            font-size: 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary {
-            background-color: white;
-            color: black;
-        }
-        
-        .btn-primary:hover {
-            background-color: #f0f0f0;
-        }
-        
-        .btn-secondary {
-            background-color: transparent;
-            color: white;
-            border: 1px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background-color: white;
-            color: black;
-        }
-        
-        .auth-form {
-            background-color: #111;
+        .auth-card {
+            background: #111;
             border: 1px solid #333;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 30px;
-            margin-top: 20px;
-            max-width: 400px;
-            width: 100%;
+            width: 400px;
+            max-width: 100%;
+        }
+        
+        .auth-card h2 {
+            margin-bottom: 20px;
+            text-align: center;
         }
         
         .form-group {
             margin-bottom: 20px;
-            text-align: left;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #ccc;
+            font-weight: 500;
         }
         
         .form-group input {
             width: 100%;
             padding: 12px;
             border: 1px solid #555;
-            border-radius: 4px;
-            background-color: #222;
-            color: white;
+            border-radius: 6px;
+            background: #222;
+            color: #fff;
             font-size: 16px;
         }
         
         .form-group input:focus {
             outline: none;
-            border-color: white;
+            border-color: #fff;
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
         }
         
-        .form-actions {
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #fff;
+        }
+        
+        .btn-secondary:hover {
+            background: #fff;
+            color: #000;
+        }
+        
+        .dashboard {
+            display: none;
+            margin-top: 40px;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .user-info {
+            font-size: 1.1em;
+        }
+        
+        .logout-btn {
+            background: #333;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .logout-btn:hover {
+            background: #555;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 25px;
+        }
+        
+        .card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .chat-section {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background: #0a0a0a;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .message.user {
+            background: #222;
+            margin-left: 20%;
+        }
+        
+        .message.ai {
+            background: #1a1a1a;
+            margin-right: 20%;
+            border-left: 3px solid #fff;
+        }
+        
+        .message-header {
+            font-size: 0.9em;
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        
+        .chat-input-group {
             display: flex;
             gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 6px;
+            background: #222;
+            color: #fff;
+        }
+        
+        .send-btn {
+            padding: 10px 20px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .send-btn:hover {
+            background: #f0f0f0;
+        }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .status-message {
+            text-align: center;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .status-success {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: #0f0;
+        }
+        
+        .status-error {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            color: #f00;
         }
         
         .hidden {
             display: none !important;
         }
         
-        .status-message {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-        
-        .status-success {
-            background-color: #004d00;
-            color: #00ff00;
-            border: 1px solid #00aa00;
-        }
-        
-        .status-error {
-            background-color: #4d0000;
-            color: #ff0000;
-            border: 1px solid #aa0000;
-        }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.5em;
+        @media (max-width: 768px) {
+            .auth-section {
+                flex-direction: column;
+                align-items: center;
             }
             
-            .auth-form {
-                padding: 20px;
-                margin: 20px 0;
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
             }
         }
     </style>
 </head>
 <body>
-    <div id="root">
-        <div class="app-container">
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
             <h1>🎯 Goal AI</h1>
-            <p class="subtitle">JEE/NEET Preparation Assistant - Working!</p>
-            
-            <div id="main-buttons" class="button-group">
-                <button class="btn btn-primary" onclick="showLogin()">Login</button>
-                <button class="btn btn-secondary" onclick="showSignup()">Sign Up</button>
-            </div>
-            
-            <div id="login-form" class="auth-form hidden">
-                <h3 style="text-align: center; margin-bottom: 20px;">Login to Goal AI</h3>
-                <form onsubmit="handleLogin(event)">
+            <p>AI-Powered JEE/NEET Preparation Assistant</p>
+        </div>
+        
+        <!-- Authentication Section -->
+        <div id="auth-section" class="auth-section">
+            <!-- Login Card -->
+            <div class="auth-card">
+                <h2>Login</h2>
+                <form id="login-form">
                     <div class="form-group">
                         <label for="login-email">Email</label>
                         <input type="email" id="login-email" name="email" required>
@@ -199,18 +305,16 @@
                         <label for="login-password">Password</label>
                         <input type="password" id="login-password" name="password" required>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <button type="button" class="btn btn-secondary" onclick="hideAuthForms()">Cancel</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
                 </form>
             </div>
             
-            <div id="signup-form" class="auth-form hidden">
-                <h3 style="text-align: center; margin-bottom: 20px;">Create Account</h3>
-                <form onsubmit="handleSignup(event)">
+            <!-- Signup Card -->
+            <div class="auth-card">
+                <h2>Create Account</h2>
+                <form id="signup-form">
                     <div class="form-group">
-                        <label for="signup-name">Name</label>
+                        <label for="signup-name">Full Name</label>
                         <input type="text" id="signup-name" name="name" required>
                     </div>
                     <div class="form-group">
@@ -221,63 +325,109 @@
                         <label for="signup-password">Password</label>
                         <input type="password" id="signup-password" name="password" required minlength="6">
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-primary">Sign Up</button>
-                        <button type="button" class="btn btn-secondary" onclick="hideAuthForms()">Cancel</button>
-                    </div>
+                    <button type="submit" class="btn btn-secondary">Sign Up</button>
                 </form>
             </div>
+        </div>
+        
+        <!-- Status Messages -->
+        <div id="status-message"></div>
+        
+        <!-- Dashboard Section -->
+        <div id="dashboard" class="dashboard">
+            <div class="dashboard-header">
+                <div class="user-info">
+                    Welcome, <span id="user-name">Student</span>!
+                </div>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
             
-            <div id="status-message"></div>
+            <div class="dashboard-grid">
+                <!-- AI Chat Section -->
+                <div class="card">
+                    <h3>🤖 AI Assistant</h3>
+                    <div class="chat-section">
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="message ai">
+                                <div class="message-header">Goal AI Assistant</div>
+                                <div>Hello! I'm here to help you with your JEE/NEET preparation. Ask me anything about study planning, motivation, or specific subjects!</div>
+                            </div>
+                        </div>
+                        <div class="chat-input-group">
+                            <input type="text" id="chat-input" class="chat-input" placeholder="Ask me anything about your preparation...">
+                            <button id="send-btn" class="send-btn">Send</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Daily Plan Section -->
+                <div class="card">
+                    <h3>📅 Daily Plan</h3>
+                    <p style="margin-bottom: 15px;">Generate your personalized daily study plan</p>
+                    <button id="generate-plan-btn" class="btn btn-primary">Generate Plan</button>
+                    <div id="daily-plan-content" style="margin-top: 15px; padding: 15px; background: #0a0a0a; border-radius: 8px; display: none;">
+                        <!-- Plan content will appear here -->
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="card">
+                    <h3>⚡ Quick Actions</h3>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="askAI('Help me plan my physics study for today')">Plan Physics Study</button>
+                        <button class="btn btn-secondary" onclick="askAI('Give me motivation for studying hard')">Get Motivation</button>
+                        <button class="btn btn-secondary" onclick="askAI('What should I focus on for JEE Math?')">Math Focus Tips</button>
+                        <button class="btn btn-secondary" onclick="askAI('How to manage exam stress?')">Stress Management</button>
+                    </div>
+                </div>
+                
+                <!-- Study Stats -->
+                <div class="card">
+                    <h3>📊 Study Stats</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: center;">
+                        <div>
+                            <div style="font-size: 2em; font-weight: bold;">0</div>
+                            <div style="opacity: 0.7;">Days Studied</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2em; font-weight: bold;">0</div>
+                            <div style="opacity: 0.7;">Hours Today</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
     <script>
-        function showLogin() {
-            hideAuthForms();
-            document.getElementById('login-form').classList.remove('hidden');
-            document.getElementById('main-buttons').style.opacity = '0.5';
-        }
+        let currentUser = null;
         
-        function showSignup() {
-            hideAuthForms();
-            document.getElementById('signup-form').classList.remove('hidden');
-            document.getElementById('main-buttons').style.opacity = '0.5';
-        }
+        // Event listeners
+        document.getElementById('login-form').addEventListener('submit', handleLogin);
+        document.getElementById('signup-form').addEventListener('submit', handleSignup);
+        document.getElementById('logout-btn').addEventListener('click', handleLogout);
+        document.getElementById('send-btn').addEventListener('click', sendMessage);
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+        document.getElementById('generate-plan-btn').addEventListener('click', generateDailyPlan);
         
-        function hideAuthForms() {
-            document.getElementById('login-form').classList.add('hidden');
-            document.getElementById('signup-form').classList.add('hidden');
-            document.getElementById('main-buttons').style.opacity = '1';
-            clearStatusMessage();
-        }
-        
-        function showStatusMessage(message, isError = false) {
-            const statusDiv = document.getElementById('status-message');
-            statusDiv.textContent = message;
-            statusDiv.className = 'status-message ' + (isError ? 'status-error' : 'status-success');
-        }
-        
-        function clearStatusMessage() {
-            document.getElementById('status-message').innerHTML = '';
-        }
-        
-        async function handleLogin(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
+        // Authentication functions
+        async function handleLogin(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
             const loginData = {
                 email: formData.get('email'),
                 password: formData.get('password')
             };
             
             try {
-                showStatusMessage('Logging in...', false);
-                
+                showStatus('Logging in...', false);
                 const response = await fetch('/api/auth/login', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                     body: JSON.stringify(loginData)
                 });
@@ -285,22 +435,21 @@
                 const result = await response.json();
                 
                 if (response.ok) {
-                    showStatusMessage('Login successful! Redirecting...', false);
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1500);
+                    currentUser = result.user;
+                    showDashboard();
+                    clearStatus();
                 } else {
-                    showStatusMessage(result.message || 'Login failed', true);
+                    showStatus(result.message || 'Login failed', true);
                 }
             } catch (error) {
-                showStatusMessage('Connection error. Please try again.', true);
+                showStatus('Connection error. Please try again.', true);
                 console.error('Login error:', error);
             }
         }
         
-        async function handleSignup(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
+        async function handleSignup(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
             const signupData = {
                 name: formData.get('name'),
                 email: formData.get('email'),
@@ -308,13 +457,10 @@
             };
             
             try {
-                showStatusMessage('Creating account...', false);
-                
+                showStatus('Creating account...', false);
                 const response = await fetch('/api/auth/register', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                     body: JSON.stringify(signupData)
                 });
@@ -322,27 +468,142 @@
                 const result = await response.json();
                 
                 if (response.ok) {
-                    showStatusMessage('Account created successfully! Redirecting...', false);
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 1500);
+                    currentUser = result.user;
+                    showDashboard();
+                    clearStatus();
                 } else {
-                    showStatusMessage(result.message || 'Registration failed', true);
+                    showStatus(result.message || 'Registration failed', true);
                 }
             } catch (error) {
-                showStatusMessage('Connection error. Please try again.', true);
+                showStatus('Connection error. Please try again.', true);
                 console.error('Signup error:', error);
             }
         }
         
-        // Test API connection on page load
+        function handleLogout() {
+            currentUser = null;
+            document.getElementById('auth-section').classList.remove('hidden');
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('login-form').reset();
+            document.getElementById('signup-form').reset();
+            clearStatus();
+        }
+        
+        function showDashboard() {
+            document.getElementById('auth-section').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            if (currentUser && currentUser.name) {
+                document.getElementById('user-name').textContent = currentUser.name;
+            }
+        }
+        
+        // Chat functions
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            addMessageToChat('user', message);
+            input.value = '';
+            
+            const sendBtn = document.getElementById('send-btn');
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Sending...';
+            
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    credentials: 'include',
+                    body: JSON.stringify({ message })
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    addMessageToChat('ai', result.response);
+                } else {
+                    addMessageToChat('ai', 'Sorry, I had trouble processing your message. Please try again.');
+                }
+            } catch (error) {
+                addMessageToChat('ai', 'Connection error. Please check your internet and try again.');
+                console.error('Chat error:', error);
+            }
+            
+            sendBtn.disabled = false;
+            sendBtn.textContent = 'Send';
+        }
+        
+        function addMessageToChat(sender, message) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const headerText = sender === 'user' ? 'You' : 'Goal AI Assistant';
+            messageDiv.innerHTML = `
+                <div class="message-header">${headerText}</div>
+                <div>${message}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function askAI(question) {
+            document.getElementById('chat-input').value = question;
+            sendMessage();
+        }
+        
+        // Daily plan generation
+        async function generateDailyPlan() {
+            const btn = document.getElementById('generate-plan-btn');
+            const content = document.getElementById('daily-plan-content');
+            
+            btn.disabled = true;
+            btn.textContent = 'Generating...';
+            
+            try {
+                const response = await fetch('/api/daily-plan', {
+                    method: 'POST',
+                    credentials: 'include'
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    content.innerHTML = `<pre style="white-space: pre-wrap; font-family: inherit;">${result.plan}</pre>`;
+                    content.style.display = 'block';
+                } else {
+                    content.innerHTML = '<p style="color: #f00;">Failed to generate plan. Please try again.</p>';
+                    content.style.display = 'block';
+                }
+            } catch (error) {
+                content.innerHTML = '<p style="color: #f00;">Connection error. Please try again.</p>';
+                content.style.display = 'block';
+                console.error('Plan generation error:', error);
+            }
+            
+            btn.disabled = false;
+            btn.textContent = 'Generate Plan';
+        }
+        
+        // Utility functions
+        function showStatus(message, isError) {
+            const statusDiv = document.getElementById('status-message');
+            statusDiv.textContent = message;
+            statusDiv.className = `status-message ${isError ? 'status-error' : 'status-success'}`;
+        }
+        
+        function clearStatus() {
+            document.getElementById('status-message').innerHTML = '';
+        }
+        
+        // Test backend connection on load
         window.addEventListener('load', async function() {
             try {
-                const response = await fetch('/api/test', { 
-                    credentials: 'include' 
-                });
+                const response = await fetch('/api/test', { credentials: 'include' });
                 if (response.ok) {
-                    console.log('✅ Backend connection successful');
+                    console.log('✅ Backend connected successfully');
                 } else {
                     console.log('⚠️ Backend connection issue');
                 }
@@ -350,21 +611,6 @@
                 console.log('❌ Backend connection failed:', error);
             }
         });
-    </script>
-    
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(function(registration) {
-                        console.log('SW registered: ', registration);
-                    })
-                    .catch(function(registrationError) {
-                        console.log('SW registration failed: ', registrationError);
-                    });
-            });
-        }
     </script>
 </body>
 </html>
