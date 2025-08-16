@@ -72,14 +72,100 @@
     </div>
     
     <!-- React CDN -->
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react@19/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@19/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-router-dom@7/dist/umd/react-router-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     
     <!-- App Styles -->
     <link rel="stylesheet" href="/src/styles/global.css">
     
-    <script type="text/babel" src="/src/index.js"></script>
+    <script type="text/babel" data-type="module">
+        const { useState, useEffect, createContext, useContext } = React;
+        const { createRoot } = ReactDOM;
+        
+        // Simple inline app for testing
+        function SimpleApp() {
+            const [loading, setLoading] = useState(true);
+            
+            useEffect(() => {
+                // Remove initial loading screen
+                const loadingElement = document.querySelector('.initial-loading');
+                if (loadingElement) {
+                    loadingElement.remove();
+                }
+                setLoading(false);
+            }, []);
+            
+            if (loading) {
+                return React.createElement('div', { 
+                    style: { 
+                        display: 'flex', 
+                        alignItems: 'center', 
+                        justifyContent: 'center', 
+                        height: '100vh',
+                        color: 'white',
+                        fontSize: '24px'
+                    }
+                }, 'Loading Goal AI...');
+            }
+            
+            return React.createElement('div', {
+                style: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100vh',
+                    padding: '20px',
+                    textAlign: 'center'
+                }
+            }, [
+                React.createElement('h1', { 
+                    key: 'title',
+                    style: { marginBottom: '20px', color: 'white' }
+                }, 'Goal AI'),
+                React.createElement('p', {
+                    key: 'subtitle', 
+                    style: { marginBottom: '30px', color: '#888' }
+                }, 'JEE/NEET Preparation Assistant'),
+                React.createElement('div', {
+                    key: 'buttons',
+                    style: { display: 'flex', gap: '20px' }
+                }, [
+                    React.createElement('button', {
+                        key: 'login',
+                        style: {
+                            padding: '12px 24px',
+                            backgroundColor: 'white',
+                            color: 'black',
+                            border: 'none',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '16px'
+                        },
+                        onClick: () => alert('Login functionality coming soon!')
+                    }, 'Login'),
+                    React.createElement('button', {
+                        key: 'signup',
+                        style: {
+                            padding: '12px 24px',
+                            backgroundColor: 'transparent',
+                            color: 'white',
+                            border: '1px solid white',
+                            borderRadius: '6px',
+                            cursor: 'pointer',
+                            fontSize: '16px'
+                        },
+                        onClick: () => alert('Signup functionality coming soon!')
+                    }, 'Sign Up')
+                ])
+            ]);
+        }
+        
+        const root = createRoot(document.getElementById('root'));
+        root.render(React.createElement(SimpleApp));
+    </script>
     
     <!-- Service Worker Registration -->
     <script>
