@@ -2,6 +2,10 @@ const { getUserById, updateUserOnboarding, getUserOnboarding, addChatMessage, ge
 const { getChatResponse, generateDailyPlan, analyzeProgress } = require('./openai');
 
 function registerRoutes(app) {
+  // Test endpoint
+  app.get('/api/test', (req, res) => {
+    res.json({ status: 'ok', message: 'Goal AI backend is running' });
+  });
   // Middleware to check authentication
   const requireAuth = (req, res, next) => {
     if (!req.session.userId) {
